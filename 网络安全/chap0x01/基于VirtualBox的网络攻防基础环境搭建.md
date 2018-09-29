@@ -18,9 +18,7 @@
 ## 四、实验过程
 1.设置KaliGateway网关、KaliTarget靶机、KaliAttackhost攻击者主机虚拟硬盘；
 
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/32BF97F9AB6D4EC3A9106D33DEFDE51B/2332)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/F0374CEBD732454D8BCBD16A905E447F/2335)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/1C3A2F90F6074AE7A2EB6421C568DDD9/2336)
+![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE400743c69df0ee6bb0364a402066819a/3493)
 
 2.网络设置
 - 设置KaliGateway网关网络（两块网卡）：
@@ -150,10 +148,7 @@ ping 10.0.2.15
 
 - 所有节点制作成基础镜像（多重加载的虚拟硬盘）
 
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/32BF97F9AB6D4EC3A9106D33DEFDE51B/2332)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/F0374CEBD732454D8BCBD16A905E447F/2335)
-
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/1C3A2F90F6074AE7A2EB6421C568DDD9/2336)
+![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE400743c69df0ee6bb0364a402066819a/3493)
 
 ## 六、实验问题
 1).开始的时候，设置网关的两块网卡分别为NAT网卡和Host-only网卡，设置靶机、攻击者主机仅有一块Host-only网卡。
