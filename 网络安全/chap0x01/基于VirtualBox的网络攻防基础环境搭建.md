@@ -14,22 +14,25 @@
 ## 三、实验环境网络拓扑结构
 
 ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/5406CA7BB09F43F5BCEC237B75CD3828/2871)
+
 ## 四、实验过程
 1.设置KaliGateway网关、KaliTarget靶机、KaliAttackhost攻击者主机虚拟硬盘；
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/32BF97F9AB6D4EC3A9106D33DEFDE51B/2332)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/F0374CEBD732454D8BCBD16A905E447F/2335)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/1C3A2F90F6074AE7A2EB6421C568DDD9/2336)
+
+![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/25D6E99008DC4247BC5777D9276758FB/3496)
 
 2.网络设置
 - 设置KaliGateway网关网络（两块网卡）：
 
   1).网关虚拟机使用内部网络网卡：使网关KaliGateway与KaliTarget靶机处于同一个内部局域网；
+  
  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/593C743A3BAB4C80A61FD9E2FBC193CF/2330)
  
-  2).网关虚拟机使用NAT网卡：使网关KaliGateway与KaliAttackhost攻击者主机处于另外一个局域网；
+  2).网关虚拟机使用NAT-Network网卡：使网关KaliGateway与KaliAttackhost攻击者主机处于另外一个局域网；
+  
  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/E0097C7036C540ACA6818A05CB8E61E6/2322)
  
   3).在网关系统内设置第二块网卡：取消DHCP，手动设置ip地址，掩码和网关。
+  
  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/0731FA0E484E4DD18D0B3047195EA454/2415)
 
 - 设置KaliTarget靶机网络（一块网卡）
@@ -45,21 +48,21 @@
   
 - 设置KaliAttackhost攻击者主机网络（一块网卡）
 
-  1).攻击者主机用使用NAT网卡：使网关KaliGateway与KaliAttackhost攻击者主机处于另外一个局域网。
+  1).攻击者主机用使用NAT-Network网卡：使网关KaliGateway与KaliAttackhost攻击者主机处于另外一个局域网。
 
  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/4D951B88E7234232A7C938F0E4276E02/2325)
 
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE526ec91ed6004f2cd9cddb09760483a4/2419)
+ ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE526ec91ed6004f2cd9cddb09760483a4/2419)
 
 3.开启网关的ipv4转发
 - 网关系统内设置 /proc/sys/net/ipv4/ip_forward把0改为1，或者执行
-
 ```bash
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 开启ipv4转发。
 
 ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE8697600e2bd15842bc319f67affa56d6/2447)
+
 - 设置/etc/sysctrl.conf文件，将net.ipv4.ip_forward=1这一条取消注释，保存后重启网关虚拟机。（重启网络无效会造成断网问题）
 
 ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCE63237511e553775e6c84366fc7cc2ed2/2450)
@@ -145,10 +148,7 @@ ping 10.0.2.15
 
 - 所有节点制作成基础镜像（多重加载的虚拟硬盘）
 
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/32BF97F9AB6D4EC3A9106D33DEFDE51B/2332)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/F0374CEBD732454D8BCBD16A905E447F/2335)
-
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/1C3A2F90F6074AE7A2EB6421C568DDD9/2336)
+![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/25D6E99008DC4247BC5777D9276758FB/3496)
 
 ## 六、实验问题
 1).开始的时候，设置网关的两块网卡分别为NAT网卡和Host-only网卡，设置靶机、攻击者主机仅有一块Host-only网卡。
@@ -208,12 +208,43 @@ gateway 192.168.111.1
    ```
    实验问题解决
    
-   4).
-   - [ ] 靶机无法通过域名访问互联网 
+4).
+- [ ] iptables命令行设置NAT转发规则，在执行
+  ```bash
+  iptables -t nat -A POSTROUTING -o eth0 -s 192.168.111.0/24 -j MASQUERADE
+  iptables-save
+  ```
+  重启KaliGateway网关虚拟机以后，虚拟机设置失效，靶机不能访问共计者主机。
+  
+- [x] 'iptables -t nat'已将设置好了网关网络转发规则，iptables-save是多余操作，为了使设置的防火墙规则永久生效，分别配置/etc/network/if-pre-up.d文件夹内容和/etc/network/if-post-down.d文件夹内容，在KaliGateway网关虚拟机内部终端执行
+  ```bash
+  cat << EOF > /etc/network/if-pre-up.d/firewall
+  #!/bin/sh
+  /usr/sbin/iptables-restore <  /etc/iptables.rules
+  exit 0
+  EOF
+  chmod +x /etc/network/if-pre-up.d/firewall
+  ```
+  ```bash
+  cat << EOF > /etc/network/if-post-down.d/firewall
+  #!/bin/sh
+  /usr/sbin/iptables-save -c > /etc/iptables.rules
+  exit 0
+  EOF
+  chmod +x  /etc/network/if-post-down.d/firewall
+  ```
+  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/85160B917F9B449EAA372B13AE183EDC/3498)
+  ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/A91ABDFC9A3F4E909D74F6318B564882/3506)
+
+  重启网关虚拟机设置任然生效，靶机仍然可以访问共计者主机，问题得以解决。
+  
+5).
+- [ ] 靶机无法通过域名访问互联网 
    
    ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCEe0b62897eaaf2b86c1a1eb3aabf0dba2/2510)
-![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCEa174de7f31cf30d61e19c7f180ea00a5/2890)
-   - [x] 在靶机内设置公共服务器，配置 /etc/resolv.conf文件，这里设置nameserver 180.76.76.76（百度云服务器
+   ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCEa174de7f31cf30d61e19c7f180ea00a5/2890)
+
+- [x] 在靶机内设置公共服务器，配置 /etc/resolv.conf文件，这里设置nameserver 180.76.76.76（百度云服务器
    
    ![image](https://note.youdao.com/yws/public/resource/df0e1a3008d5a706774b678869cccda0/xmlnote/WEBRESOURCEe72e6f5ee6e1a2c8b98fa19ecf873dd1/2879)
 
