@@ -137,7 +137,8 @@
      nmap 192.168.111.2
      ```
      ![image](https://note.youdao.com/yws/public/resource/640d061309262934f6a8c50398c0f774/xmlnote/D88315F3F9CC4F0FA106D2CB1D19BF03/4355)
-     
+     ！[image](https://note.youdao.com/yws/public/resource/640d061309262934f6a8c50398c0f774/xmlnote/DABC6DA0A353496AA1F4C10EDF661E9C/4359)
+     nmap并没有扫描出执行‘nc -ulp 53’的53端口 
    - 4.用wireshark分析在Kalitarget的抓取的数据包
    
       ![image](https://note.youdao.com/yws/public/resource/640d061309262934f6a8c50398c0f774/xmlnote/E83FA67383E24ADCB93BD424673150FD/4136)
