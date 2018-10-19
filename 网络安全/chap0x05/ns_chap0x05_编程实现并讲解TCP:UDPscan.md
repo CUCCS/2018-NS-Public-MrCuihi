@@ -9,7 +9,7 @@
 ### 三、实验过程
 - TCP connect scan
 
-    ![](chap0x05/images/TCPcon-0-1.png)
+    ![](/网络安全/chap0x05/images/TCPcon-0-1.png)
     ![](/网络安全/chap0x05/images/TCPcon-0-2.png)
     
   - 1.在KaliAttackhost执行'tcpconnectscan.py'，同时在Kalitarget执行'tcpdump -n -i eth0 -w tcpconnectscan.cap'
