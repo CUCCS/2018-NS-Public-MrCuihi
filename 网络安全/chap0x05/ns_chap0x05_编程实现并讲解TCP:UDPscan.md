@@ -9,15 +9,15 @@
 ### 三、实验过程
 - TCP connect scan
 
-    ![](/images/TCPcon-0-1.png)
-    ![](/images/TCPcon-0-2.png)
+    ![](/网络安全/chap0x05/images/TCPcon-0-1.png)
+    ![](/网络安全/chap0x05/images/TCPcon-0-2.png)
     
   - 1.在KaliAttackhost执行'tcpconnectscan.py'，同时在Kalitarget执行'tcpdump -n -i eth0 -w tcpconnectscan.cap'
     ```bash  
     tcpdump -n -i eth0 -w tcpconnectscan.cap
     ```
     
-    ![](/images/TCPcon-1.png)
+    ![](/网络安全/chap0x05/images/TCPcon-1.png)
     
     从执行结果来看，此时3100端口关闭
 
@@ -25,8 +25,8 @@
      ```bash  
      mitmproxy -p 3100
      ```
-     ![](/images/TCPcon-2-1.png)
-     ![](/images/TCPcon-2-2.png)
+     ![](/网络安全/chap0x05/images/TCPcon-2-1.png)
+     ![](/网络安全/chap0x05/images/TCPcon-2-2.png)
      
      从执行结果来看，此时3100端口开启
   - 3.在KaliAttackhost执行nmap 192.168.111.2
@@ -34,31 +34,31 @@
      nmap 192.168.111.2
      ```
      
-     ![](/images/TCPcon-3.png)
+     ![](/网络安全/chap0x05/images/TCPcon-3.png)
 
      80端口是为HTTP即超文本传输协议开放的；53端口为DNS服务器所开放，DNS服务在NT系统中使用的最为广泛；而3100端口不是著名端口，在nmap扫描中，即使已经在Kalitarget中开启，依旧在扫描结果中没有显示。
 
   - 4.用wireshark分析在Kalitarget的抓取得的据包
   
-     ![](/images/TCPcon-4-1.png)
+     ![](/网络安全/chap0x05/images/TCPcon-4-1.png)
 
     从显示结果来看，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带SYN标志位的数据包，192.168.111.2（Kalitarget）向192.168.111.3（KaliAttackhost）回复带RST+ACK标志位的数据包说明，3100端口关闭。
     
-    ![](/images/TCPcon-4-2.png)
+    ![](/网络安全/chap0x05/images/TCPcon-4-2.png)
     
     从显示结果来看，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带SYN标志位的数据包，192.168.111.2（Kalitarget）向 192.168.111.3（KaliAttackhost）回复带SYN+ACK标志位的数据包，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带RST+ACK标志位的数据包表明3100端口开放，完成三次握手。
     
 - TCP stealth scan
 
-    ![](/images/TCPst-0-1.png)
-    ![](/images/TCPst-0-2.png)
+    ![](/网络安全/chap0x05/images/TCPst-0-1.png)
+    ![](/网络安全/chap0x05/images/TCPst-0-2.png)
     
   - 1.在KaliAttackhost执行tcpstealthscan.py，同时在Kalitarget执行'tcpdump -n -i eth0 -w tcpstealthcan.cap'
      ```bash  
      tcpdump -n -i eth0 -w tcpstealthscan.cap
      ```
      
-     ![](/images/TCPst-1-1.png)
+     ![](/网络安全/chap0x05/images/TCPst-1-1.png)
      
      从执行结果来看，此时80端口关闭
 
@@ -66,9 +66,9 @@
      ```bash  
      mitmproxy -p 80
      ```
-     ![](/images/TCPst-2-1.png)
+     ![](/网络安全/chap0x05/images/TCPst-2-1.png)
      
-     ![](/images/TCPst-2-2.png)
+     ![](/网络安全/chap0x05/images/TCPst-2-2.png)
      
      此时80端口开启
      
@@ -76,30 +76,31 @@
      ```bash  
      nmap 192.168.111.2
      ```
-     ![](/images/TCPst-3-1.png)
+     ![](/网络安全/chap0x05/images/TCPst-3-1.png)
      
      验证80端口开启
      
   - 4.用wireshark分析在Kalitarget的抓取的数据包
    
-     ![](/images/TCPst-4-1.png)
+     ![](/网络安全/chap0x05/images/TCPst-4-1.png)
 
      从显示结果来看，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带SYN标志位的数据包，192.168.111.2（Kalitarget）向192.168.111.3（KaliAttackhost）回复标志位为RST+ACK的数据包说明，80端口关闭。
      
-     ![](/images/TCPst-4-2.png)
+     ![](/网络安全/chap0x05/images/TCPst-4-2.png)
+     
      从显示结果来看，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带SYN标志位的数据包，192.168.111.2（Kalitarget）向192.168.111.3（KaliAttackhost）回复带SYN+ACK标志位的数据包，192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带RST标志位的数据包表明80端口开放。
 
  - TCP XMAS scan
  
-     ![](/images/TCPXM-0-1.png)
-     ![](/images/TCPXM-0-2.png)
-     ![](/images/TCPXM-0-3.png)
+     ![](/网络安全/chap0x05/images/TCPXM-0-1.png)
+     ![](/网络安全/chap0x05/images/TCPXM-0-2.png)
+     ![](/网络安全/chap0x05/images/TCPXM-0-3.png)
      
    - 1.在KaliAttackhost执行tcpsXMASscan.py，同时在Kalitarget执行'tcpdump -n -i eth0 -w tcpXMASscan.cap'
      ```bash  
      tcpdump -n -i eth0 -w tcpXMASscan.cap
      ```
-     ![](/images/TCPXM-1-1.png)
+     ![](/网络安全/chap0x05/images/TCPXM-1-1.png)
      
      从执行结果来看，此时53端口关闭
 
@@ -107,7 +108,7 @@
      ```bash  
      mitmproxy -p 53
      ```
-     ![](/images/TCPXM-2-1.png)
+     ![](/网络安全/chap0x05/images/TCPXM-2-1.png)
     
      此时53端口开启
 
@@ -115,12 +116,12 @@
        ```bash  
         nmap 192.168.111.2
        ```
-       ![](/images/TCPXM-3-1.png)
+       ![](/网络安全/chap0x05/images/TCPXM-3-1.png)
        
        验证端口53开启
     - 4.用wireshark分析在Kalitarget的抓取的数据包
     
-       ![](/images/TCPXM-4-1.png)
+       ![](/网络安全/chap0x05/images/TCPXM-4-1.png)
     
        序号3、4的数据包：192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送带PSH, FIN,  URG 标志位的数据包，192.168.111.2（Kalitarget）向 192.168.111.3（KaliAttackhost）回复标志位为RST+ACK的数据包说明，53端口关闭。
 
@@ -131,41 +132,41 @@
 
 - UDP scan
 
-    ![](/images/UDP-0-1.png)
-    ![](/images/UDP-0-2.png)
-    ![](/images/UDP-0-3.png)
-    ![](/images/UDP-0-4.png)
+    ![](/网络安全/chap0x05/images/UDP-0-1.png)
+    ![](/网络安全/chap0x05/images/UDP-0-2.png)
+    ![](/网络安全/chap0x05/images/UDP-0-3.png)
+    ![](/网络安全/chap0x05/images/UDP-0-4.png)
     
   - 1.在KaliAttackhost执行udpscan.py，同时在Kalitarget执行'tcpdump -i -n eth0 -w udpscan.cap'
     ```bash  
     tcpdump -n -i eth0 -w udpscan.cap
     ```
     
-    ![](/images/UDP-1-1.png)
+    ![](/网络安全/chap0x05/images/UDP-1-1.png)
     
     从执行结果来看53端口关闭
   - 2.在Kalitarget执行'nc -u -l -p 53 < /etc/passwd'，开启对端口53的监听，同时在KaliAttackhost执行udpscan.py
      ```bash  
       nc -u -l -p 53 < /etc/passwd
      ```
-     ![](/images/UDP-2-1.png)
-     ![](/images/UDP-2-2.png)
+     ![](/网络安全/chap0x05/images/UDP-2-1.png)
+     ![](/网络安全/chap0x05/images/UDP-2-2.png)
 
      从执行结果来看53端口开启
    - 3.在KaliAttackhost执行' nmap 192.168.111.2 -p 53 -sU -n -T4 -vv'
      ```bash  
      nmap 192.168.111.2 -p 53 -sU -n -T4 -vv 
      ```
-     ![](/images/UDP-3-1.png)
+     ![](/网络安全/chap0x05/images/UDP-3-1.png)
      
       从执行结果来看53端口开启
    - 4.用wireshark分析在Kalitarget的抓取的数据包
    
-      ![](/images/UDP-4-1.png)
+      ![](/网络安全/chap0x05/images/UDP-4-1.png)
 
       192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送UDP数据包;192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）回复ICMP数据包（error type：3，error code：3）说明53端口关闭。
       
-      ![](/images/UDP-4-2.png)
+      ![](/网络安全/chap0x05/images/UDP-4-2.png)
       
       192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送UDP数据包；192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）回复UDP数据包说明53端口开启。
     
@@ -264,14 +265,14 @@ elif (udp_scan_resp.haslayer(ICMP)):
 - [ ] 初始时利用‘mitmproxy -p 53’开启53端口，但是该条命令语句第四个实验UDPscan开启端口监听后，
 在KaliAttackhost执行python udpscan.py，执行的结果依旧是
 
-  ![](/images/QUE-1-1.png)
+  ![](/网络安全/chap0x05/images/QUE-1-1.png)
 
   尝试更换不同的端口号如80端口，3100端口，得到的结果都是端口关闭
    
    - wireshark分析抓包结果
      1. 80端口
 
-     ![](/images/QUE-1-2.png)
+     ![](/网络安全/chap0x05/images/QUE-1-2.png)
 
      抓包分析依旧是80端口关闭
      
@@ -318,8 +319,8 @@ elif (udp_scan_resp.haslayer(ICMP)):
       udp_scan(dst_ip,dst_port,dst_timeout)
       ```
       
-      ![](/images/QUE-2-1.png)
-      ![](/images/QUE-2-2.png)
+      ![](/网络安全/chap0x05/images/QUE-2-1.png)
+      ![](/网络安全/chap0x05/images/QUE-2-2.png)
     
       192.168.111.3（KaliAttackhost）向192.168.111.2（Kalitarget）发送UDP数据包;192.168.111.3（KaliAttackhost）并没有向192.168.111.2（Kalitarget）回复任何数据包，说明53端口开启或者被过滤。
 
@@ -332,7 +333,7 @@ elif (udp_scan_resp.haslayer(ICMP)):
      ```bash
      nmap -sU 192.168.111.2
      ```
-     ![](/images/QUE-3-1.png)
+     ![](/网络安全/chap0x05/images/QUE-3-1.png)
      
      nmap并没有扫描出执行‘nc -ulp 53’的53端口 
      
