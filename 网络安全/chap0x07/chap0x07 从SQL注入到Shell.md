@@ -243,7 +243,7 @@ wfuzz -c -z file,wordlist/general/big.txt --hc 404 --conn-delay 20 req-delay 20 
 
 - [x] 更改浏览器输入语句`192.168.56.101/cat.php?id=1 UNION SELECT 1,database(),3,4`，成功得到查询内容
 
-- [x] wfuzz爆破可以用于查找隐藏未链接的资源如脚本等，还可以用于以检查不同类型的注入，虽然成功使用wfuzz进行了本次实验，并观察到了预测的实验结果，未能根本明白在本次sql实验中wfuzz暴力破解的直接或者间接作用，此次实验中进行wfuzz的目的。
+- [ ] wfuzz爆破可以用于查找隐藏未链接的资源如脚本等，还可以用于以检查不同类型的注入，虽然成功使用wfuzz进行了本次实验，并观察到了预测的实验结果，未能根本明白在本次sql实验中wfuzz暴力破解的直接或者间接作用，此次实验中进行wfuzz的目的。
 
 ##### 参考
 - [from_sql_to_shell.md](https://github.com/choitop/ns/blob/f484bac28f8215205ba8e4bc5f66afdcbf6d4b03/2017-2/LAB_whx/LAB3/from_sql_to_shell.md)
