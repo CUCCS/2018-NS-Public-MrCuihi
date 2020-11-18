@@ -155,7 +155,7 @@ wfuzz -c -z file,wordlist/general/big.txt --hc 404 --conn-delay 20 req-delay 20 
       
          1).网页在线破解，破解为`P4ssw0rd`
             
-            ![](/网络安全/chap0x07/images/2-7-D-B-1.png)
+          ![](/网络安全/chap0x07/images/2-7-D-B-1.png)
          
          2).利用John the ripper密码破解工具,终端输入命令
          ```bash
